@@ -27,6 +27,33 @@ const mods = [
   { name: 'Applied Energistics', downloads: '20M+', category: 'Технологии' },
 ];
 
+const builds = [
+  { 
+    id: 1, 
+    title: 'Замок на горе', 
+    author: 'SteveBuilder', 
+    likes: 2847, 
+    category: 'Средневековье',
+    image: 'https://cdn.poehali.dev/projects/75e06282-f1e2-4b83-af1c-4c5e47fad7fe/files/0f8380b6-96c3-491e-b8c9-f9221a7205ef.jpg'
+  },
+  { 
+    id: 2, 
+    title: 'Киберпанк город', 
+    author: 'Redstone_Pro', 
+    likes: 3921, 
+    category: 'Современность',
+    image: 'https://cdn.poehali.dev/projects/75e06282-f1e2-4b83-af1c-4c5e47fad7fe/files/cc8022a6-f671-42a9-8606-2fab27d96c15.jpg'
+  },
+  { 
+    id: 3, 
+    title: 'Подводный храм', 
+    author: 'AquaArchitect', 
+    likes: 1567, 
+    category: 'Фантастика',
+    image: 'https://cdn.poehali.dev/projects/75e06282-f1e2-4b83-af1c-4c5e47fad7fe/files/f2f2af55-3e0a-4a02-934d-0824096d7ca9.jpg'
+  },
+];
+
 export default function Index() {
   const [selectedServer, setSelectedServer] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState('map');
@@ -48,6 +75,7 @@ export default function Index() {
               <a href="#shop" className="text-foreground/80 hover:text-foreground transition-colors">Магазин</a>
               <a href="#forum" className="text-foreground/80 hover:text-foreground transition-colors">Форум</a>
               <a href="#news" className="text-foreground/80 hover:text-foreground transition-colors">Новости</a>
+              <a href="#builds" className="text-foreground/80 hover:text-foreground transition-colors">Постройки</a>
               <a href="#mods" className="text-foreground/80 hover:text-foreground transition-colors">Моды</a>
             </div>
             <Button className="pixel-corners">
@@ -222,6 +250,50 @@ export default function Index() {
                 <p className="text-sm text-muted-foreground">{item.date}</p>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="builds" className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-4 text-foreground">Галерея построек</h2>
+          <p className="text-center text-muted-foreground mb-12">Лучшие творения нашего сообщества</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {builds.map((build) => (
+              <Card key={build.id} className="overflow-hidden bg-card border-2 border-border hover:border-accent transition-all group cursor-pointer">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={build.image} 
+                    alt={build.title}
+                    className="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500"
+                  />
+                  <div className="absolute top-4 right-4">
+                    <Badge className="pixel-corners bg-card/90 backdrop-blur-sm">{build.category}</Badge>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-accent transition-colors">
+                    {build.title}
+                  </h3>
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Icon name="User" size={16} />
+                      <span>{build.author}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-foreground">
+                      <Icon name="Heart" size={16} className="text-destructive" />
+                      <span className="font-semibold">{build.likes.toLocaleString()}</span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Button size="lg" variant="outline" className="pixel-corners">
+              <Icon name="Image" size={18} className="mr-2" />
+              Посмотреть всю галерею
+            </Button>
           </div>
         </div>
       </section>
